@@ -1,0 +1,1 @@
+document.addEventListener('DOMContentLoaded',()=>{document.querySelectorAll('.nav-link').forEach(a=>a.addEventListener('click',()=>{const menu=document.querySelector('.navbar-collapse');if(menu&&menu.classList.contains('show')) bootstrap.Collapse.getOrCreateInstance(menu).hide()}));});
