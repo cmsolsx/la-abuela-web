@@ -9,7 +9,196 @@
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilos.css">
+
+  <style>
+    :root {
+      --verde: #2e7d32;
+      --verde-oscuro: #1b5e20;
+      --naranja: #f57c00;
+      --amarillo: #ffd54f;
+      --crema: #fff8e1;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #263238;
+    }
+
+    .navbar {
+      background: rgba(27, 94, 32, .97);
+    }
+
+    .nav-link {
+      color: #fff !important;
+      font-weight: 600;
+    }
+
+    .nav-link:hover {
+      color: var(--amarillo) !important;
+    }
+
+    .hero {
+      background:
+        linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.52)),
+        url("img/foto1.jpg") center/cover no-repeat;
+      padding-top: 90px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-logo-grande {
+      max-width: 330px;
+      filter: drop-shadow(0 14px 28px rgba(0,0,0,.35));
+    }
+
+    .btn-abuela {
+      background: var(--naranja);
+      color: white;
+      font-weight: 800;
+      border: none;
+    }
+
+    .btn-abuela:hover {
+      background: #df6f00;
+      color: white;
+    }
+
+    .btn-whatsapp {
+      background: #25d366;
+      color: white;
+      font-weight: 800;
+      border: none;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+      color: white;
+    }
+
+    .section-title {
+      color: var(--verde-oscuro);
+      font-weight: 900;
+    }
+
+    .card {
+      border: none;
+      border-radius: 22px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.08);
+    }
+
+    .product-card {
+      overflow: hidden;
+      transition: .25s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(0,0,0,.14);
+    }
+
+    .product-img {
+      height: 210px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .precio {
+      color: var(--naranja);
+      font-weight: 900;
+    }
+
+    .icon-box {
+      font-size: 3rem;
+      color: var(--verde);
+      margin-bottom: 15px;
+    }
+
+    .highlight {
+      background: var(--crema);
+      border-radius: 28px;
+      padding: 40px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.08);
+    }
+
+    .badge-fresh {
+      background: var(--verde);
+      color: white;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      display: inline-block;
+    }
+
+    #carrito {
+      scroll-margin-top: 100px;
+    }
+
+    #lista-carrito .card {
+      border-radius: 18px;
+      margin-bottom: 12px;
+    }
+
+    .map iframe {
+      width: 100%;
+      min-height: 360px;
+      border: 0;
+      border-radius: 22px;
+    }
+
+    .footer {
+      background: #1b1b1b;
+      color: #ddd;
+      padding: 45px 0;
+    }
+
+    .footer a {
+      color: var(--amarillo);
+      text-decoration: none;
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      width: 64px;
+      height: 64px;
+      background: #25d366;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      z-index: 999;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(0,0,0,.28);
+    }
+
+    .whatsapp-float:hover {
+      background: #1ebe5d;
+      color: white;
+      transform: scale(1.06);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        text-align: center;
+      }
+
+      .hero h1 {
+        font-size: 2.6rem;
+      }
+
+      .highlight {
+        padding: 28px;
+      }
+
+      .product-img {
+        height: 160px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -31,9 +220,7 @@
         <li class="nav-item"><a class="nav-link" href="#historia">Nuestra esencia</a></li>
         <li class="nav-item"><a class="nav-link" href="#ubicacion">Ubicación</a></li>
         <li class="nav-item">
-          <a class="btn btn-warning fw-bold ms-lg-3" href="#carrito">
-            Ver carrito
-          </a>
+          <a class="btn btn-warning fw-bold ms-lg-3" href="#carrito">Ver carrito</a>
         </li>
       </ul>
     </div>
@@ -42,18 +229,16 @@
 
 <header id="inicio" class="hero">
   <div class="container">
-    <div class="row align-items-center min-vh-100">
+    <div class="row align-items-center">
       <div class="col-lg-7 text-white">
         <span class="badge bg-warning text-dark mb-3">Producto fresco todos los días</span>
         <h1 class="display-3 fw-bold">Frutas y verduras frescas para su mesa</h1>
         <p class="lead fs-4">
-          Compre fácil, consulte disponibilidad y envíe su pedido por WhatsApp.
+          Compre fácil, agregue productos al carrito y envíe su pedido por WhatsApp.
         </p>
 
         <div class="d-flex flex-wrap gap-3 mt-4">
-          <a href="#productos" class="btn btn-abuela btn-lg">
-            Ver productos
-          </a>
+          <a href="#productos" class="btn btn-abuela btn-lg">Ver productos</a>
 
           <a href="https://wa.me/50689833000?text=Hola%20La%20Abuela,%20quiero%20hacer%20un%20pedido" target="_blank" class="btn btn-whatsapp btn-lg">
             <i class="bi bi-whatsapp"></i> Pedir por WhatsApp
@@ -105,9 +290,7 @@
     <p class="fs-5">
       Haga su pedido por WhatsApp y confirme disponibilidad, precios del día y cobertura.
     </p>
-    <a href="#productos" class="btn btn-abuela btn-lg">
-      Empezar pedido
-    </a>
+    <a href="#productos" class="btn btn-abuela btn-lg">Empezar pedido</a>
   </div>
 </section>
 
@@ -125,7 +308,7 @@
         <div class="card-body text-center">
           <h5>Frutas frescas</h5>
           <p class="precio">Consultar</p>
-          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Frutas frescas', 'según disponibilidad', 0)">
+          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Frutas frescas', 'según disponibilidad')">
             Agregar
           </button>
         </div>
@@ -138,7 +321,7 @@
         <div class="card-body text-center">
           <h5>Verduras</h5>
           <p class="precio">Consultar</p>
-          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Verduras', 'según disponibilidad', 0)">
+          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Verduras', 'según disponibilidad')">
             Agregar
           </button>
         </div>
@@ -151,7 +334,7 @@
         <div class="card-body text-center">
           <h5>Temporada</h5>
           <p class="precio">Consultar</p>
-          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Productos de temporada', 'según disponibilidad', 0)">
+          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Productos de temporada', 'según disponibilidad')">
             Agregar
           </button>
         </div>
@@ -164,7 +347,7 @@
         <div class="card-body text-center">
           <h5>Selección diaria</h5>
           <p class="precio">Consultar</p>
-          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Selección diaria', 'según disponibilidad', 0)">
+          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Selección diaria', 'según disponibilidad')">
             Agregar
           </button>
         </div>
@@ -174,7 +357,9 @@
   </div>
 
   <div class="text-center mt-5">
-    <a href="productos.html" class="btn btn-abuela btn-lg">Ver catálogo completo</a>
+    <a href="https://laabuela-catalogo-mw1exf4.gamma.site/" target="_blank" class="btn btn-abuela btn-lg">
+      Ver catálogo digital
+    </a>
   </div>
 </section>
 
@@ -188,8 +373,9 @@
     <div id="lista-carrito"></div>
 
     <div class="text-center mt-4">
-      <h4>Total aproximado: ₡<span id="total-carrito">0</span></h4>
-      <small class="d-block mb-3">Los precios finales se confirman por WhatsApp según disponibilidad del día.</small>
+      <small class="d-block mb-3">
+        Los precios finales se confirman por WhatsApp según disponibilidad del día.
+      </small>
 
       <button class="btn btn-whatsapp btn-lg" onclick="enviarWhatsApp()">
         <i class="bi bi-whatsapp"></i> Enviar pedido
@@ -290,8 +476,8 @@
       <div class="col-md-4">
         <h4>Enlaces</h4>
         <p><a href="https://laabuela-catalogo-mw1exf4.gamma.site/" target="_blank">Catálogo digital</a></p>
-        <p><a href="productos.html">Productos</a></p>
-        <p><a href="recetas.html">Recetas</a></p>
+        <p><a href="#productos">Productos</a></p>
+        <p><a href="#ubicacion">Ubicación</a></p>
       </div>
 
       <div class="col-md-4">
@@ -314,10 +500,11 @@
 </a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <script>
 let carrito = [];
 
-window.agregarCarrito = function(nombre, unidad, precio) {
+function agregarCarrito(nombre, unidad) {
   const existente = carrito.find(item => item.nombre === nombre);
 
   if (existente) {
@@ -326,7 +513,6 @@ window.agregarCarrito = function(nombre, unidad, precio) {
     carrito.push({
       nombre: nombre,
       unidad: unidad,
-      precio: precio,
       cantidad: 1
     });
   }
@@ -337,9 +523,9 @@ window.agregarCarrito = function(nombre, unidad, precio) {
   if (seccionCarrito) {
     seccionCarrito.scrollIntoView({ behavior: "smooth" });
   }
-};
+}
 
-window.cambiarCantidad = function(nombre, cambio) {
+function cambiarCantidad(nombre, cambio) {
   const producto = carrito.find(item => item.nombre === nombre);
 
   if (!producto) return;
@@ -351,19 +537,18 @@ window.cambiarCantidad = function(nombre, cambio) {
   }
 
   mostrarCarrito();
-};
+}
 
-window.eliminarProducto = function(nombre) {
+function eliminarProducto(nombre) {
   carrito = carrito.filter(item => item.nombre !== nombre);
   mostrarCarrito();
-};
+}
 
 function mostrarCarrito() {
   const lista = document.getElementById("lista-carrito");
-  const total = document.getElementById("total-carrito");
 
-  if (!lista || !total) {
-    console.error("No existe lista-carrito o total-carrito en el HTML.");
+  if (!lista) {
+    console.error("No existe el elemento lista-carrito.");
     return;
   }
 
@@ -371,15 +556,10 @@ function mostrarCarrito() {
 
   if (carrito.length === 0) {
     lista.innerHTML = "<p class='text-center'>Todavía no ha agregado productos.</p>";
-    total.textContent = "0";
     return;
   }
 
-  let suma = 0;
-
   carrito.forEach(item => {
-    suma += item.precio * item.cantidad;
-
     lista.innerHTML += `
       <div class="card p-3 mb-2">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
@@ -398,26 +578,25 @@ function mostrarCarrito() {
       </div>
     `;
   });
-
-  total.textContent = suma.toLocaleString("es-CR");
 }
 
-window.enviarWhatsApp = function() {
+function enviarWhatsApp() {
   if (carrito.length === 0) {
     alert("El carrito está vacío.");
     return;
   }
 
-  let mensaje = "Hola La Abuela, quiero hacer este pedido:%0A%0A";
+  let mensaje = "Hola La Abuela, quiero hacer este pedido:\n\n";
 
   carrito.forEach(item => {
-    mensaje += `- ${item.nombre} x${item.cantidad} (${item.unidad})%0A`;
+    mensaje += "- " + item.nombre + " x" + item.cantidad + " (" + item.unidad + ")\n";
   });
 
-  mensaje += "%0APor favor confirmar disponibilidad, precios del día y servicio a domicilio.";
+  mensaje += "\nPor favor confirmar disponibilidad, precios del día y servicio a domicilio.";
 
-  window.open("https://wa.me/50689833000?text=" + mensaje, "_blank");
-};
+  const mensajeCodificado = encodeURIComponent(mensaje);
+  window.open("https://wa.me/50689833000?text=" + mensajeCodificado, "_blank");
+}
 
 document.addEventListener("DOMContentLoaded", mostrarCarrito);
 </script>
