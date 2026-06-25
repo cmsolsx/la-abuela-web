@@ -97,15 +97,10 @@
       box-shadow: 0 18px 40px rgba(0,0,0,.14);
     }
 
-    .product-img {
-      height: 210px;
-      width: 100%;
-      object-fit: cover;
-    }
-
     .precio {
       color: var(--naranja);
       font-weight: 900;
+      font-size: 1.05rem;
     }
 
     .icon-box {
@@ -130,13 +125,47 @@
       display: inline-block;
     }
 
-    #carrito {
+    #productos,
+    #carrito,
+    #historia,
+    #ubicacion {
       scroll-margin-top: 100px;
+    }
+
+    #buscadorProductos,
+    #filtroCategoria {
+      border-radius: 16px;
+      border: 2px solid #e0e0e0;
+    }
+
+    #buscadorProductos:focus,
+    #filtroCategoria:focus {
+      border-color: #2e7d32;
+      box-shadow: 0 0 0 .2rem rgba(46, 125, 50, .18);
+    }
+
+    .product-card h5 {
+      min-height: 48px;
+      font-weight: 800;
+    }
+
+    .product-card .badge {
+      font-size: .7rem;
+      border-radius: 999px;
     }
 
     #lista-carrito .card {
       border-radius: 18px;
       margin-bottom: 12px;
+    }
+
+    .contador-carrito {
+      background: var(--amarillo);
+      color: #1b1b1b;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-weight: 900;
+      margin-left: 5px;
     }
 
     .map iframe {
@@ -187,15 +216,11 @@
       }
 
       .hero h1 {
-        font-size: 2.6rem;
+        font-size: 2.5rem;
       }
 
       .highlight {
         padding: 28px;
-      }
-
-      .product-img {
-        height: 160px;
       }
     }
   </style>
@@ -216,11 +241,11 @@
     <div class="collapse navbar-collapse" id="menu">
       <ul class="navbar-nav ms-auto align-items-lg-center">
         <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="#carrito">Carrito</a></li>
+        <li class="nav-item"><a class="nav-link" href="#carrito">Carrito <span id="contadorCarrito" class="contador-carrito">0</span></a></li>
         <li class="nav-item"><a class="nav-link" href="#historia">Nuestra esencia</a></li>
         <li class="nav-item"><a class="nav-link" href="#ubicacion">Ubicación</a></li>
         <li class="nav-item">
-          <a class="btn btn-warning fw-bold ms-lg-3" href="#carrito">Ver carrito</a>
+          <a class="btn btn-warning fw-bold ms-lg-3" href="#productos">Comprar ahora</a>
         </li>
       </ul>
     </div>
@@ -241,7 +266,7 @@
           <a href="#productos" class="btn btn-abuela btn-lg">Ver productos</a>
 
           <a href="https://wa.me/50689833000?text=Hola%20La%20Abuela,%20quiero%20hacer%20un%20pedido" target="_blank" class="btn btn-whatsapp btn-lg">
-            <i class="bi bi-whatsapp"></i> Pedir por WhatsApp
+            <i class="bi bi-whatsapp"></i> WhatsApp
           </a>
         </div>
       </div>
@@ -268,8 +293,8 @@
     <div class="col-md-4">
       <div class="card p-4 h-100">
         <i class="bi bi-cash-coin icon-box"></i>
-        <h4>Precios justos</h4>
-        <p>Una opción práctica para comprar bien y cuidar la economía familiar.</p>
+        <h4>Precios visibles</h4>
+        <p>Consulte el catálogo, agregue productos y confirme disponibilidad.</p>
       </div>
     </div>
 
@@ -277,7 +302,7 @@
       <div class="card p-4 h-100">
         <i class="bi bi-whatsapp icon-box"></i>
         <h4>Pedido rápido</h4>
-        <p>Agregue productos al carrito y envíe su pedido directo por WhatsApp.</p>
+        <p>El carrito arma el mensaje y lo envía directo por WhatsApp.</p>
       </div>
     </div>
   </div>
@@ -295,72 +320,24 @@
 </section>
 
 <section id="productos" class="container py-5">
-  <div class="text-center mb-5">
-    <h2 class="section-title">Productos destacados</h2>
-    <p>Agregue productos al carrito y envíe el pedido por WhatsApp.</p>
+  <div class="text-center mb-4">
+    <h2 class="section-title">Catálogo de productos</h2>
+    <p>Seleccione una categoría, agregue productos al carrito y envíe el pedido por WhatsApp.</p>
   </div>
 
-  <div class="row g-4">
-
-    <div class="col-6 col-md-3">
-      <div class="card product-card h-100">
-        <img src="img/foto3.jpg" class="card-img-top product-img" alt="Frutas frescas">
-        <div class="card-body text-center">
-          <h5>Frutas frescas</h5>
-          <p class="precio">Consultar</p>
-          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Frutas frescas', 'según disponibilidad')">
-            Agregar
-          </button>
-        </div>
-      </div>
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <input type="text" id="buscadorProductos" class="form-control form-control-lg" placeholder="Buscar producto...">
     </div>
 
-    <div class="col-6 col-md-3">
-      <div class="card product-card h-100">
-        <img src="img/foto13.jpg" class="card-img-top product-img" alt="Verduras frescas">
-        <div class="card-body text-center">
-          <h5>Verduras</h5>
-          <p class="precio">Consultar</p>
-          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Verduras', 'según disponibilidad')">
-            Agregar
-          </button>
-        </div>
-      </div>
+    <div class="col-md-6">
+      <select id="filtroCategoria" class="form-select form-select-lg">
+        <option value="Todos">Todas las categorías</option>
+      </select>
     </div>
-
-    <div class="col-6 col-md-3">
-      <div class="card product-card h-100">
-        <img src="img/foto10.jpg" class="card-img-top product-img" alt="Productos de temporada">
-        <div class="card-body text-center">
-          <h5>Temporada</h5>
-          <p class="precio">Consultar</p>
-          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Productos de temporada', 'según disponibilidad')">
-            Agregar
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-6 col-md-3">
-      <div class="card product-card h-100">
-        <img src="img/foto6.jpg" class="card-img-top product-img" alt="Selección diaria">
-        <div class="card-body text-center">
-          <h5>Selección diaria</h5>
-          <p class="precio">Consultar</p>
-          <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('Selección diaria', 'según disponibilidad')">
-            Agregar
-          </button>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <div class="text-center mt-5">
-    <a href="https://laabuela-catalogo-mw1exf4.gamma.site/" target="_blank" class="btn btn-abuela btn-lg">
-      Ver catálogo digital
-    </a>
-  </div>
+  <div id="contenedorProductos" class="row g-4"></div>
 </section>
 
 <section id="carrito" class="container py-5">
@@ -379,6 +356,10 @@
 
       <button class="btn btn-whatsapp btn-lg" onclick="enviarWhatsApp()">
         <i class="bi bi-whatsapp"></i> Enviar pedido
+      </button>
+
+      <button class="btn btn-outline-danger btn-lg ms-2" onclick="vaciarCarrito()">
+        Vaciar carrito
       </button>
     </div>
   </div>
@@ -400,36 +381,6 @@
       </p>
       <div class="highlight mt-4">
         <h3>“La comida es salud. La mesa es unión. La frescura comienza en La Abuela.”</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="container py-5">
-  <div class="text-center mb-5">
-    <h2 class="section-title">Ideas para su mesa</h2>
-    <p>Recetas sencillas para aprovechar mejor sus frutas y verduras.</p>
-  </div>
-
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card h-100 p-4">
-        <h4>🥗 Ensalada arcoíris</h4>
-        <p>Lechuga, tomate, zanahoria, pepino y limón.</p>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card h-100 p-4">
-        <h4>🍍 Batido tropical</h4>
-        <p>Banano, papaya, piña y hielo para empezar el día con energía.</p>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card h-100 p-4">
-        <h4>🥘 Salteado campesino</h4>
-        <p>Verduras con ajo, cebolla y especias para una cena ligera.</p>
       </div>
     </div>
   </div>
@@ -475,8 +426,8 @@
 
       <div class="col-md-4">
         <h4>Enlaces</h4>
-        <p><a href="https://laabuela-catalogo-mw1exf4.gamma.site/" target="_blank">Catálogo digital</a></p>
         <p><a href="#productos">Productos</a></p>
+        <p><a href="#carrito">Carrito</a></p>
         <p><a href="#ubicacion">Ubicación</a></p>
       </div>
 
@@ -504,7 +455,164 @@
 <script>
 let carrito = [];
 
-function agregarCarrito(nombre, unidad) {
+const productos = [
+  { categoria: "VERDURAS", nombre: "Ajo (3 unidades)", precio: "₡250" },
+  { categoria: "VERDURAS", nombre: "Ajo criollo", precio: "₡350 c/u" },
+  { categoria: "VERDURAS", nombre: "Ajo (½ kg)", precio: "₡1.500" },
+  { categoria: "VERDURAS", nombre: "Ayote sazón", precio: "₡700/kg" },
+  { categoria: "VERDURAS", nombre: "Banano de cocina", precio: "₡50 c/u" },
+  { categoria: "VERDURAS", nombre: "Brócoli", precio: "₡800/kg" },
+  { categoria: "VERDURAS", nombre: "Camote", precio: "₡1.500/kg" },
+  { categoria: "VERDURAS", nombre: "Cebolla blanca", precio: "₡800/kg" },
+  { categoria: "VERDURAS", nombre: "Cebolla morada", precio: "₡1.300/kg" },
+  { categoria: "VERDURAS", nombre: "Chayote blanco", precio: "₡650" },
+  { categoria: "VERDURAS", nombre: "Chayote negro", precio: "₡650" },
+  { categoria: "VERDURAS", nombre: "Chayote quelite", precio: "₡200" },
+  { categoria: "VERDURAS", nombre: "Chile dulce", precio: "₡250" },
+  { categoria: "VERDURAS", nombre: "Chile panameño", precio: "₡50 c/u" },
+  { categoria: "VERDURAS", nombre: "Coco", precio: "₡600" },
+  { categoria: "VERDURAS", nombre: "Coliflor", precio: "₡800 c/u" },
+  { categoria: "VERDURAS", nombre: "Elote", precio: "₡250" },
+  { categoria: "VERDURAS", nombre: "Papa amarilla", precio: "₡950/kg" },
+  { categoria: "VERDURAS", nombre: "Papa semilla", precio: "₡800/kg" },
+  { categoria: "VERDURAS", nombre: "Pepino", precio: "₡700" },
+  { categoria: "VERDURAS", nombre: "Plátano verde", precio: "₡250" },
+  { categoria: "VERDURAS", nombre: "Plátano maduro", precio: "₡250" },
+  { categoria: "VERDURAS", nombre: "Remolacha", precio: "₡400/kg" },
+  { categoria: "VERDURAS", nombre: "Repollo morado", precio: "₡900/kg" },
+  { categoria: "VERDURAS", nombre: "Repollo orgánico", precio: "₡650 c/u" },
+  { categoria: "VERDURAS", nombre: "Repollo verde", precio: "₡650/kg" },
+  { categoria: "VERDURAS", nombre: "Tomate Cherry", precio: "₡1.000" },
+  { categoria: "VERDURAS", nombre: "Tomate", precio: "₡1.200/kg" },
+  { categoria: "VERDURAS", nombre: "Tiquisque", precio: "₡1.250/kg" },
+  { categoria: "VERDURAS", nombre: "Vainica", precio: "₡1.000/kg" },
+  { categoria: "VERDURAS", nombre: "Yuca", precio: "₡1.000/kg" },
+  { categoria: "VERDURAS", nombre: "Zanahoria", precio: "₡750/kg" },
+  { categoria: "VERDURAS", nombre: "Ñampí", precio: "₡1.250/kg" },
+
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Albahaca", precio: "₡350" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Apio", precio: "₡150" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Cebollino", precio: "₡400" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Culantro Castilla", precio: "₡200" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Culantro Coyote", precio: "₡200 / 3 x ₡500" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Espinaca", precio: "₡350" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Lechuga", precio: "₡300" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Orégano", precio: "₡200" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Perejil", precio: "₡350" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Tomillo", precio: "₡300" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Arúgula", precio: "Consultar" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Hierbabuena", precio: "Consultar" },
+  { categoria: "HIERBAS Y LEGUMBRES", nombre: "Rábano", precio: "Consultar" },
+
+  { categoria: "FRUTAS", nombre: "Aguacate criollo", precio: "₡600" },
+  { categoria: "FRUTAS", nombre: "Aguacate Hass", precio: "₡3.200/kg" },
+  { categoria: "FRUTAS", nombre: "Banano", precio: "₡50" },
+  { categoria: "FRUTAS", nombre: "Ciruela exportación", precio: "₡3.400/kg" },
+  { categoria: "FRUTAS", nombre: "Fresas", precio: "₡1.600" },
+  { categoria: "FRUTAS", nombre: "Manzana Roja", precio: "₡400" },
+  { categoria: "FRUTAS", nombre: "Manzana Verde", precio: "₡450" },
+  { categoria: "FRUTAS", nombre: "Manzana Gala", precio: "6 x ₡1.000" },
+  { categoria: "FRUTAS", nombre: "Manzana Verde (promo)", precio: "5 x ₡1.000" },
+  { categoria: "FRUTAS", nombre: "Mango", precio: "₡750/kg ó 3 kg ₡2.000" },
+  { categoria: "FRUTAS", nombre: "Nectarina", precio: "₡3.400/kg" },
+  { categoria: "FRUTAS", nombre: "Naranja Exportación", precio: "₡2.300/kg" },
+  { categoria: "FRUTAS", nombre: "Naranja Nacional", precio: "₡150 c/u ó 8 x ₡1.000" },
+  { categoria: "FRUTAS", nombre: "Papaya", precio: "₡1.200/kg" },
+  { categoria: "FRUTAS", nombre: "Pera", precio: "₡400" },
+  { categoria: "FRUTAS", nombre: "Piña Grande", precio: "₡1.400" },
+  { categoria: "FRUTAS", nombre: "Piña Mediana", precio: "₡900" },
+  { categoria: "FRUTAS", nombre: "Sandía Primera", precio: "₡500/kg" },
+  { categoria: "FRUTAS", nombre: "Uva Roja", precio: "₡3.400/kg" },
+  { categoria: "FRUTAS", nombre: "Uva Verde", precio: "₡4.800/kg" },
+  { categoria: "FRUTAS", nombre: "Guayaba", precio: "Consultar" },
+  { categoria: "FRUTAS", nombre: "Mandarina", precio: "Consultar" },
+  { categoria: "FRUTAS", nombre: "Melocotón", precio: "Consultar" },
+  { categoria: "FRUTAS", nombre: "Melón", precio: "Consultar" },
+
+  { categoria: "FRESCOS", nombre: "Pipa", precio: "₡500" },
+  { categoria: "FRESCOS", nombre: "Mora (200 g)", precio: "₡600" },
+  { categoria: "FRESCOS", nombre: "Mora (500 g)", precio: "₡1.500" },
+  { categoria: "FRESCOS", nombre: "Tamarindo", precio: "₡600" },
+  { categoria: "FRESCOS", nombre: "Maracuyá", precio: "₡1.700/kg" },
+  { categoria: "FRESCOS", nombre: "Carambola", precio: "₡1.000/kg" },
+  { categoria: "FRESCOS", nombre: "Naranjilla", precio: "₡2.200/kg" },
+
+  { categoria: "ABARROTES Y COMPLEMENTOS", nombre: "Agua", precio: "₡250" },
+  { categoria: "ABARROTES Y COMPLEMENTOS", nombre: "Huevos (cartón)", precio: "₡4.000" },
+  { categoria: "ABARROTES Y COMPLEMENTOS", nombre: "Huevos (kg)", precio: "₡2.200" },
+  { categoria: "ABARROTES Y COMPLEMENTOS", nombre: "Volt Gris", precio: "₡350" },
+  { categoria: "ABARROTES Y COMPLEMENTOS", nombre: "Big Cola Cifruit", precio: "₡200" },
+  { categoria: "ABARROTES Y COMPLEMENTOS", nombre: "Big Cola Negra", precio: "₡200" },
+  { categoria: "ABARROTES Y COMPLEMENTOS", nombre: "Big Cola Ginger", precio: "₡200" },
+  { categoria: "ABARROTES Y COMPLEMENTOS", nombre: "Big Cola Toronja", precio: "₡200" },
+  { categoria: "ABARROTES Y COMPLEMENTOS", nombre: "Tostados", precio: "₡1.000" },
+
+  { categoria: "PULPAS NATURALES", nombre: "Pulpa de Mora", precio: "₡1.900" },
+  { categoria: "PULPAS NATURALES", nombre: "Pulpa de Cas", precio: "₡1.900" },
+  { categoria: "PULPAS NATURALES", nombre: "Pulpa de Maracuyá", precio: "₡1.900" },
+  { categoria: "PULPAS NATURALES", nombre: "Pulpa de Piña Colada", precio: "₡1.900" },
+  { categoria: "PULPAS NATURALES", nombre: "Pulpa de Fresa", precio: "₡1.900" },
+  { categoria: "PULPAS NATURALES", nombre: "Pulpa de Guanábana", precio: "₡1.900" },
+
+  { categoria: "MIEL PURA DE ABEJA", nombre: "Miel Grande", precio: "₡5.700" },
+  { categoria: "MIEL PURA DE ABEJA", nombre: "Miel Mediana", precio: "₡3.200" },
+  { categoria: "MIEL PURA DE ABEJA", nombre: "Miel pequeña (vidrio)", precio: "₡2.200" },
+  { categoria: "MIEL PURA DE ABEJA", nombre: "Miel pequeña (plástico)", precio: "₡2.000" },
+  { categoria: "MIEL PURA DE ABEJA", nombre: "Miel en bolsa", precio: "₡1.700" },
+  { categoria: "MIEL PURA DE ABEJA", nombre: "Polen (vidrio)", precio: "₡3.200" },
+  { categoria: "MIEL PURA DE ABEJA", nombre: "Polen (plástico)", precio: "₡3.100" },
+  { categoria: "MIEL PURA DE ABEJA", nombre: "Miel en panal", precio: "₡2.800" }
+];
+
+function cargarCategorias() {
+  const select = document.getElementById("filtroCategoria");
+  const categorias = [...new Set(productos.map(producto => producto.categoria))];
+
+  categorias.forEach(categoria => {
+    const option = document.createElement("option");
+    option.value = categoria;
+    option.textContent = categoria;
+    select.appendChild(option);
+  });
+}
+
+function mostrarProductos() {
+  const contenedor = document.getElementById("contenedorProductos");
+  const busqueda = document.getElementById("buscadorProductos").value.toLowerCase();
+  const categoriaSeleccionada = document.getElementById("filtroCategoria").value;
+
+  contenedor.innerHTML = "";
+
+  const productosFiltrados = productos.filter(producto => {
+    const coincideNombre = producto.nombre.toLowerCase().includes(busqueda);
+    const coincideCategoria = categoriaSeleccionada === "Todos" || producto.categoria === categoriaSeleccionada;
+    return coincideNombre && coincideCategoria;
+  });
+
+  if (productosFiltrados.length === 0) {
+    contenedor.innerHTML = "<p class='text-center'>No se encontraron productos.</p>";
+    return;
+  }
+
+  productosFiltrados.forEach(producto => {
+    contenedor.innerHTML += `
+      <div class="col-6 col-md-4 col-lg-3">
+        <div class="card product-card h-100">
+          <div class="card-body text-center">
+            <span class="badge bg-success mb-2">${producto.categoria}</span>
+            <h5>${producto.nombre}</h5>
+            <p class="precio">${producto.precio}</p>
+            <button class="btn btn-success btn-sm w-100" onclick="agregarCarrito('${producto.nombre.replace(/'/g, "\\'")}', '${producto.precio.replace(/'/g, "\\'")}')">
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
+
+function agregarCarrito(nombre, precio) {
   const existente = carrito.find(item => item.nombre === nombre);
 
   if (existente) {
@@ -512,7 +620,7 @@ function agregarCarrito(nombre, unidad) {
   } else {
     carrito.push({
       nombre: nombre,
-      unidad: unidad,
+      precio: precio,
       cantidad: 1
     });
   }
@@ -544,15 +652,21 @@ function eliminarProducto(nombre) {
   mostrarCarrito();
 }
 
+function vaciarCarrito() {
+  carrito = [];
+  mostrarCarrito();
+}
+
 function mostrarCarrito() {
   const lista = document.getElementById("lista-carrito");
+  const contador = document.getElementById("contadorCarrito");
 
-  if (!lista) {
-    console.error("No existe el elemento lista-carrito.");
-    return;
-  }
+  if (!lista) return;
 
   lista.innerHTML = "";
+
+  const totalItems = carrito.reduce((total, item) => total + item.cantidad, 0);
+  contador.textContent = totalItems;
 
   if (carrito.length === 0) {
     lista.innerHTML = "<p class='text-center'>Todavía no ha agregado productos.</p>";
@@ -565,14 +679,14 @@ function mostrarCarrito() {
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
           <div>
             <strong>${item.nombre}</strong><br>
-            <small>${item.unidad}</small><br>
+            <small>Precio: ${item.precio}</small><br>
             <small>Cantidad: ${item.cantidad}</small>
           </div>
 
           <div>
-            <button class="btn btn-sm btn-outline-success" onclick="cambiarCantidad('${item.nombre}', 1)">+</button>
-            <button class="btn btn-sm btn-outline-warning" onclick="cambiarCantidad('${item.nombre}', -1)">-</button>
-            <button class="btn btn-sm btn-outline-danger" onclick="eliminarProducto('${item.nombre}')">Eliminar</button>
+            <button class="btn btn-sm btn-outline-success" onclick="cambiarCantidad('${item.nombre.replace(/'/g, "\\'")}', 1)">+</button>
+            <button class="btn btn-sm btn-outline-warning" onclick="cambiarCantidad('${item.nombre.replace(/'/g, "\\'")}', -1)">-</button>
+            <button class="btn btn-sm btn-outline-danger" onclick="eliminarProducto('${item.nombre.replace(/'/g, "\\'")}')">Eliminar</button>
           </div>
         </div>
       </div>
@@ -589,7 +703,7 @@ function enviarWhatsApp() {
   let mensaje = "Hola La Abuela, quiero hacer este pedido:\n\n";
 
   carrito.forEach(item => {
-    mensaje += "- " + item.nombre + " x" + item.cantidad + " (" + item.unidad + ")\n";
+    mensaje += "- " + item.nombre + " x" + item.cantidad + " | Precio: " + item.precio + "\n";
   });
 
   mensaje += "\nPor favor confirmar disponibilidad, precios del día y servicio a domicilio.";
@@ -598,7 +712,14 @@ function enviarWhatsApp() {
   window.open("https://wa.me/50689833000?text=" + mensajeCodificado, "_blank");
 }
 
-document.addEventListener("DOMContentLoaded", mostrarCarrito);
+document.addEventListener("DOMContentLoaded", function() {
+  cargarCategorias();
+  mostrarProductos();
+  mostrarCarrito();
+
+  document.getElementById("buscadorProductos").addEventListener("input", mostrarProductos);
+  document.getElementById("filtroCategoria").addEventListener("change", mostrarProductos);
+});
 </script>
 
 </body>
