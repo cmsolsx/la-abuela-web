@@ -314,7 +314,113 @@
 </a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="js/main.js"></script>
+<script>
+let carrito = [];
+
+window.agregarCarrito = function(nombre, unidad, precio) {
+  const existente = carrito.find(item => item.nombre === nombre);
+
+  if (existente) {
+    existente.cantidad++;
+  } else {
+    carrito.push({
+      nombre: nombre,
+      unidad: unidad,
+      precio: precio,
+      cantidad: 1
+    });
+  }
+
+  mostrarCarrito();
+
+  const seccionCarrito = document.getElementById("carrito");
+  if (seccionCarrito) {
+    seccionCarrito.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+window.cambiarCantidad = function(nombre, cambio) {
+  const producto = carrito.find(item => item.nombre === nombre);
+
+  if (!producto) return;
+
+  producto.cantidad += cambio;
+
+  if (producto.cantidad <= 0) {
+    carrito = carrito.filter(item => item.nombre !== nombre);
+  }
+
+  mostrarCarrito();
+};
+
+window.eliminarProducto = function(nombre) {
+  carrito = carrito.filter(item => item.nombre !== nombre);
+  mostrarCarrito();
+};
+
+function mostrarCarrito() {
+  const lista = document.getElementById("lista-carrito");
+  const total = document.getElementById("total-carrito");
+
+  if (!lista || !total) {
+    console.error("No existe lista-carrito o total-carrito en el HTML.");
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  if (carrito.length === 0) {
+    lista.innerHTML = "<p class='text-center'>Todavía no ha agregado productos.</p>";
+    total.textContent = "0";
+    return;
+  }
+
+  let suma = 0;
+
+  carrito.forEach(item => {
+    suma += item.precio * item.cantidad;
+
+    lista.innerHTML += `
+      <div class="card p-3 mb-2">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <div>
+            <strong>${item.nombre}</strong><br>
+            <small>${item.unidad}</small><br>
+            <small>Cantidad: ${item.cantidad}</small>
+          </div>
+
+          <div>
+            <button class="btn btn-sm btn-outline-success" onclick="cambiarCantidad('${item.nombre}', 1)">+</button>
+            <button class="btn btn-sm btn-outline-warning" onclick="cambiarCantidad('${item.nombre}', -1)">-</button>
+            <button class="btn btn-sm btn-outline-danger" onclick="eliminarProducto('${item.nombre}')">Eliminar</button>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+
+  total.textContent = suma.toLocaleString("es-CR");
+}
+
+window.enviarWhatsApp = function() {
+  if (carrito.length === 0) {
+    alert("El carrito está vacío.");
+    return;
+  }
+
+  let mensaje = "Hola La Abuela, quiero hacer este pedido:%0A%0A";
+
+  carrito.forEach(item => {
+    mensaje += `- ${item.nombre} x${item.cantidad} (${item.unidad})%0A`;
+  });
+
+  mensaje += "%0APor favor confirmar disponibilidad, precios del día y servicio a domicilio.";
+
+  window.open("https://wa.me/50689833000?text=" + mensaje, "_blank");
+};
+
+document.addEventListener("DOMContentLoaded", mostrarCarrito);
+</script>
 
 </body>
 </html>
