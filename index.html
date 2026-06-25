@@ -128,6 +128,7 @@
     #productos,
     #carrito,
     #historia,
+    #recetas,
     #ubicacion {
       scroll-margin-top: 100px;
     }
@@ -242,6 +243,7 @@
       <ul class="navbar-nav ms-auto align-items-lg-center">
         <li class="nav-item"><a class="nav-link" href="#productos">Productos</a></li>
         <li class="nav-item"><a class="nav-link" href="#carrito">Carrito <span id="contadorCarrito" class="contador-carrito">0</span></a></li>
+        <li class="nav-item"><a class="nav-link" href="#recetas">Recetas</a></li>
         <li class="nav-item"><a class="nav-link" href="#historia">Nuestra esencia</a></li>
         <li class="nav-item"><a class="nav-link" href="#ubicacion">Ubicación</a></li>
         <li class="nav-item">
@@ -264,6 +266,10 @@
 
         <div class="d-flex flex-wrap gap-3 mt-4">
           <a href="#productos" class="btn btn-abuela btn-lg">Ver productos</a>
+
+          <a href="#recetas" class="btn btn-light btn-lg fw-bold">
+            <i class="bi bi-journal-richtext"></i> Ver recetas
+          </a>
 
           <a href="https://wa.me/50689833000?text=Hola%20La%20Abuela,%20quiero%20hacer%20un%20pedido" target="_blank" class="btn btn-whatsapp btn-lg">
             <i class="bi bi-whatsapp"></i> WhatsApp
@@ -365,6 +371,42 @@
   </div>
 </section>
 
+<section id="recetas" class="container py-5">
+  <div class="text-center mb-5">
+    <h2 class="section-title">Recetas para su mesa</h2>
+    <p>Ideas sencillas para aprovechar mejor las frutas y verduras de La Abuela.</p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 p-4 text-center">
+        <h4>🥗 Ensalada arcoíris</h4>
+        <p>Lechuga, tomate, zanahoria, pepino y limón. Fresca, rápida y nutritiva.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 p-4 text-center">
+        <h4>🍍 Batido tropical</h4>
+        <p>Banano, papaya, piña y hielo. Ideal para iniciar el día con energía natural.</p>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card h-100 p-4 text-center">
+        <h4>🥘 Salteado campesino</h4>
+        <p>Verduras con ajo, cebolla y especias. Una cena ligera, casera y sabrosa.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-5">
+    <a href="recetas.html" class="btn btn-abuela btn-lg">
+      <i class="bi bi-journal-richtext"></i> Ver recetario completo
+    </a>
+  </div>
+</section>
+
 <section id="historia" class="container py-5">
   <div class="row align-items-center g-5">
     <div class="col-lg-6">
@@ -428,6 +470,7 @@
         <h4>Enlaces</h4>
         <p><a href="#productos">Productos</a></p>
         <p><a href="#carrito">Carrito</a></p>
+        <p><a href="#recetas">Recetas</a></p>
         <p><a href="#ubicacion">Ubicación</a></p>
       </div>
 
