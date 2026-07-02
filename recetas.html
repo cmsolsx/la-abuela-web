@@ -48,6 +48,7 @@
       box-shadow: 0 10px 28px rgba(0,0,0,.08);
       overflow: hidden;
       transition: .25s ease;
+      background: white;
     }
 
     .card:hover {
@@ -55,10 +56,21 @@
       box-shadow: 0 18px 40px rgba(0,0,0,.14);
     }
 
+    .recipe-img-box {
+      width: 100%;
+      height: 280px;
+      background: var(--crema);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px;
+    }
+
     .recipe-img {
       width: 100%;
-      height: 240px;
-      object-fit: cover;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 16px;
     }
 
     .btn-abuela {
@@ -83,6 +95,21 @@
     .footer a {
       color: var(--amarillo);
       text-decoration: none;
+    }
+
+    @media(max-width: 768px) {
+      .recipe-img-box {
+        height: 240px;
+      }
+
+      .btn-lg {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .ms-2 {
+        margin-left: 0 !important;
+      }
     }
   </style>
 </head>
@@ -122,7 +149,9 @@
 
     <div class="col-md-4">
       <div class="card h-100">
-        <img src="img/ensalada-arcoiris.jpg" class="recipe-img" alt="Ensalada arcoíris">
+        <div class="recipe-img-box">
+          <img src="img/ensalada-arcoiris.jpg" class="recipe-img" alt="Ensalada arcoíris">
+        </div>
         <div class="card-body text-center p-4">
           <h4>🥗 Ensalada arcoíris</h4>
           <p>
@@ -136,7 +165,9 @@
 
     <div class="col-md-4">
       <div class="card h-100">
-        <img src="img/batido-tropical.jpg" class="recipe-img" alt="Batido tropical">
+        <div class="recipe-img-box">
+          <img src="img/batido-tropical.jpg" class="recipe-img" alt="Batido tropical">
+        </div>
         <div class="card-body text-center p-4">
           <h4>🍍 Batido tropical</h4>
           <p>
@@ -150,7 +181,9 @@
 
     <div class="col-md-4">
       <div class="card h-100">
-        <img src="img/salteado-campesino.jpg" class="recipe-img" alt="Salteado campesino">
+        <div class="recipe-img-box">
+          <img src="img/salteado-campesino.jpg" class="recipe-img" alt="Salteado campesino">
+        </div>
         <div class="card-body text-center p-4">
           <h4>🥘 Salteado campesino</h4>
           <p>
