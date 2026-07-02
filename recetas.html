@@ -1,225 +1,65 @@
-<!doctype html>
-<html lang="es">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Recetas | La Abuela</title>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-
-  <style>
-    :root {
-      --verde: #2e7d32;
-      --verde-oscuro: #1b5e20;
-      --naranja: #f57c00;
-      --amarillo: #ffd54f;
-      --crema: #fff8e1;
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, sans-serif;
-      color: #263238;
-      padding-top: 90px;
-      background: #fffdf7;
-    }
-
-    .navbar {
-      background: rgba(27, 94, 32, .97);
-    }
-
-    .nav-link {
-      color: #fff !important;
-      font-weight: 600;
-    }
-
-    .nav-link:hover {
-      color: var(--amarillo) !important;
-    }
-
-    .section-title {
-      color: var(--verde-oscuro);
-      font-weight: 900;
-    }
-
-    .card {
-      border: none;
-      border-radius: 22px;
-      box-shadow: 0 10px 28px rgba(0,0,0,.08);
-      overflow: hidden;
-      transition: .25s ease;
-      background: white;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 40px rgba(0,0,0,.14);
-    }
-
-    .recipe-img-box {
-      width: 100%;
-      height: 280px;
-      background: var(--crema);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 12px;
-    }
-
-    .recipe-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      border-radius: 16px;
-    }
-
-    .btn-abuela {
-      background: var(--naranja);
-      color: white;
-      font-weight: 800;
-      border: none;
-    }
-
-    .btn-abuela:hover {
-      background: #df6f00;
-      color: white;
-    }
-
-    .footer {
-      background: #1b1b1b;
-      color: #ddd;
-      padding: 45px 0;
-      margin-top: 40px;
-    }
-
-    .footer a {
-      color: var(--amarillo);
-      text-decoration: none;
-    }
-
-    @media(max-width: 768px) {
-      .recipe-img-box {
-        height: 240px;
-      }
-
-      .btn-lg {
-        width: 100%;
-        margin-bottom: 10px;
-      }
-
-      .ms-2 {
-        margin-left: 0 !important;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow">
-  <div class="container">
-    <a class="navbar-brand fw-bold" href="index.html">
-      <i class="bi bi-basket2-fill"></i> La Abuela
-    </a>
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link active" href="recetas.html">Recetas</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<main class="container py-5">
-
-  <div class="text-center mb-5">
-    <h1 class="section-title">Recetas para su mesa</h1>
-    <p class="fs-5">
-      Ideas sencillas, frescas y nutritivas para preparar con productos de La Abuela.
-    </p>
-  </div>
-
-  <div class="row g-4">
-
-    <div class="col-md-4">
-      <div class="card h-100">
+<div class="col-md-4">
+    <div class="card h-100">
         <div class="recipe-img-box">
-          <img src="img/ensalada-arcoiris.jpg" class="recipe-img" alt="Ensalada arcoíris">
+            <img src="img/ensalada-arcoiris.jpg"
+                 class="recipe-img"
+                 alt="Ensalada arcoíris">
         </div>
-        <div class="card-body text-center p-4">
-          <h4>🥗 Ensalada arcoíris</h4>
-          <p>
-            Combine lechuga, tomate, zanahoria, pepino y limón.
-            Fresca, rápida y nutritiva.
-          </p>
-          <a href="productos.html" class="btn btn-abuela">Comprar ingredientes</a>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-md-4">
-      <div class="card h-100">
+        <div class="card-body text-center p-4">
+            <h4>🥗 Ensalada arcoíris</h4>
+            <p>
+                Combine lechuga, tomate, zanahoria, pepino y limón.
+                Fresca, rápida y nutritiva.
+            </p>
+
+            <a href="productos.html" class="btn btn-abuela">
+                Comprar ingredientes
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="card h-100">
         <div class="recipe-img-box">
-          <img src="img/batido-tropical.jpg" class="recipe-img" alt="Batido tropical">
+            <img src="img/batido-tropical.jpg"
+                 class="recipe-img"
+                 alt="Batido tropical">
         </div>
-        <div class="card-body text-center p-4">
-          <h4>🍍 Batido tropical</h4>
-          <p>
-            Licúe banano, papaya, piña y hielo.
-            Ideal para iniciar el día con energía natural.
-          </p>
-          <a href="productos.html" class="btn btn-abuela">Comprar ingredientes</a>
-        </div>
-      </div>
-    </div>
 
-    <div class="col-md-4">
-      <div class="card h-100">
+        <div class="card-body text-center p-4">
+            <h4>🍍 Batido tropical</h4>
+            <p>
+                Licúe banano, papaya, piña y hielo.
+                Ideal para iniciar el día con energía natural.
+            </p>
+
+            <a href="productos.html" class="btn btn-abuela">
+                Comprar ingredientes
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="card h-100">
         <div class="recipe-img-box">
-          <img src="img/salteado-campesino.jpg" class="recipe-img" alt="Salteado campesino">
+            <img src="img/salteado-campesino.jpg"
+                 class="recipe-img"
+                 alt="Salteado campesino">
         </div>
+
         <div class="card-body text-center p-4">
-          <h4>🥘 Salteado campesino</h4>
-          <p>
-            Sofría verduras con ajo, cebolla y especias.
-            Una cena ligera, casera y sabrosa.
-          </p>
-          <a href="productos.html" class="btn btn-abuela">Comprar ingredientes</a>
+            <h4>🥘 Salteado campesino</h4>
+            <p>
+                Sofría verduras con ajo, cebolla y especias.
+                Una cena ligera, casera y sabrosa.
+            </p>
+
+            <a href="productos.html" class="btn btn-abuela">
+                Comprar ingredientes
+            </a>
         </div>
-      </div>
     </div>
-
-  </div>
-
-  <div class="text-center mt-5">
-    <a href="index.html" class="btn btn-outline-success btn-lg">
-      <i class="bi bi-house-door-fill"></i> Volver al inicio
-    </a>
-    <a href="productos.html" class="btn btn-abuela btn-lg ms-2">
-      Ver catálogo
-    </a>
-  </div>
-
-</main>
-
-<footer class="footer">
-  <div class="container text-center">
-    <p class="mb-1">© 2026 La Abuela Verdulería y Frutería.</p>
-    <p class="mb-0">
-      <a href="index.html">Inicio</a> |
-      <a href="productos.html">Productos</a> |
-      <a href="recetas.html">Recetas</a>
-    </p>
-  </div>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+</div>
